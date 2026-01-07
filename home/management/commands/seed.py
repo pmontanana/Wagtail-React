@@ -27,9 +27,6 @@ class Command(BaseCommand):
             self.stdout.write(self.style.WARNING('HomePage not found. Please create one in admin first (or run standard migrations).'))
 
         # 2. Create Blog Pages
-        # Delete existing blog pages to avoid duplicates on re-run
-        BlogPage.objects.all().delete()
-
         blog_posts = [
             {
                 "title": "El Futuro del Desarrollo Web",
@@ -59,15 +56,18 @@ class Command(BaseCommand):
 
         if homepage:
             for post in blog_posts:
-                page = BlogPage(
-                    title=post["title"],
-                    intro=post["intro"],
-                    date=post["date"],
-                    body=post["body"]
-                )
-                homepage.add_child(instance=page)
-                page.save_revision().publish()
+                # Check if page already exists to prevent duplication and tree corruption
+                if not BlogPage.objects.child_of(homepage).filter(title=post["title"]).exists():
+                    page = BlogPage(
+                        title=post["title"],
+                        intro=post["intro"],
+                        date=post["date"],
+                        body=post["body"]
+                    )
+                    homepage.add_child(instance=page)
+                    page.save_revision().publish()
+                    self.stdout.write(f'Created: {post["title"]}')
+                else:
+                    self.stdout.write(f'Skipped (exists): {post["title"]}')
             
-            self.stdout.write(self.style.SUCCESS(f'Created {len(blog_posts)} Blog Pages.'))
-
-        self.stdout.write(self.style.SUCCESS('Seeding complete!'))
+            self.stdout.write(self.style.SUCCESS('Seeding complete!'))
