@@ -10,3 +10,6 @@ python manage.py collectstatic --no-input
 
 # Migrar base de datos
 python manage.py migrate
+
+# Poblar datos iniciales (Seed)
+python manage.py seed
