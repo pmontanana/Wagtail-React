@@ -7,6 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import { API_URL } from "@/lib/config"
 
 interface WagtailPage {
   id: number;
@@ -28,7 +29,7 @@ export function Home() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/v2/pages/?type=home.HomePage&fields=body')
+    fetch(`${API_URL}/api/v2/pages/?type=home.HomePage&fields=body`)
       .then((res) => res.ok ? res.json() : { items: [] })
       .then((data: WagtailResponse) => {
         setPages(data.items);

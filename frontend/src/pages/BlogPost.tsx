@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button"
 import { ArrowLeft, CalendarDays } from "lucide-react"
+import { API_URL } from "@/lib/config"
 
 interface BlogPostData {
   id: number;
@@ -17,7 +18,7 @@ export function BlogPost() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`http://localhost:8000/api/v2/pages/${id}/`)
+    fetch(`${API_URL}/api/v2/pages/${id}/`)
       .then((res) => {
         if (!res.ok) throw new Error("Not found");
         return res.json();

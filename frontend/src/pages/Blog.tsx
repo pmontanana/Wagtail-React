@@ -11,6 +11,7 @@ import {
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, CalendarDays } from "lucide-react"
+import { API_URL } from "@/lib/config"
 
 interface BlogPage {
   id: number;
@@ -31,7 +32,7 @@ export function Blog() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/v2/pages/?type=home.BlogPage&fields=intro,date&order=-date')
+    fetch(`${API_URL}/api/v2/pages/?type=home.BlogPage&fields=intro,date&order=-date`)
       .then((res) => res.ok ? res.json() : { items: [] })
       .then((data: WagtailResponse) => {
         setPosts(data.items);
