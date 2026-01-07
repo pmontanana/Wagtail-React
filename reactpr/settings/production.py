@@ -10,10 +10,13 @@ if RENDER_EXTERNAL_HOSTNAME:
     CSRF_TRUSTED_ORIGINS = [f'https://{RENDER_EXTERNAL_HOSTNAME}']
 
 # CORS
-CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOWED_ORIGINS_ENV = os.environ.get('CORS_ALLOWED_ORIGINS')
-if CORS_ALLOWED_ORIGINS_ENV:
-    CORS_ALLOWED_ORIGINS = CORS_ALLOWED_ORIGINS_ENV.split(',')
+
+if CORS_ALLOWED_ORIGINS_ENV == '*':
+    CORS_ALLOW_ALL_ORIGINS = True
+elif CORS_ALLOWED_ORIGINS_ENV:
+    CORS_ALLOW_ALL_ORIGINS = False
+    CORS_ALLOWED_ORIGINS = [origin.strip() for origin in CORS_ALLOWED_ORIGINS_ENV.split(',')]
 
 # ManifestStaticFilesStorage is recommended in production, to prevent
 # outdated JavaScript / CSS assets being served from cache
