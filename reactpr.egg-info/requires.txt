@@ -1,0 +1,6 @@
+Django<5.3,>=5.2
+wagtail<7.3,>=7.2
+psycopg2-binary>=2.9
+dj-database-url>=2.1
+django-tailwind[reload]>=3.8.0
+django-cors-headers>=4.3.0

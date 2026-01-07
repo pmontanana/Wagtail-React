@@ -1,0 +1,74 @@
+# --- System & IDEs ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# --- Python / Django ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+.coverage
+.tox/
+.coverage
+htmlcov/
+.pytest_cache/
+
+# --- Database ---
+*.sqlite3
+*.sqlite3-journal
+
+# --- Django Local Settings ---
+# It is good practice to ignore local settings that might contain secrets
+*/settings/local.py
+.env
+
+# --- Wagtail / Media / Static ---
+media/
+staticfiles/
+# Ignore collected static files, but keep the source static files
+static/
+!reactpr/static/
+!home/static/
+!theme/static/
+
+# --- Node.js / Frontend ---
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.npm/
+
+# --- React / Vite Build ---
+frontend/dist/
+frontend/coverage/
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
+
+# --- Django Tailwind (Theme App) ---
+theme/static_src/node_modules/
+theme/static_src/package-lock.json
+theme/static_src/yarn.lock
+# Ignore compiled CSS if you want to force build on deploy (Recommended)
+theme/static/css/dist/
+
+# --- Docker ---
+# If you mount volumes locally with these names
+postgres_data/
+.docker_data/
+
+# --- AI / Tooling Context ---
+.gemini/
+GEMINI.md

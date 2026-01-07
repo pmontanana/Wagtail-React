@@ -1,0 +1,13 @@
+Metadata-Version: 2.4
+Name: reactpr
+Version: 0.1.0
+Summary: A Wagtail CMS project
+License: Proprietary
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+Requires-Dist: Django<5.3,>=5.2
+Requires-Dist: wagtail<7.3,>=7.2
+Requires-Dist: psycopg2-binary>=2.9
+Requires-Dist: dj-database-url>=2.1
+Requires-Dist: django-tailwind[reload]>=3.8.0
+Requires-Dist: django-cors-headers>=4.3.0
